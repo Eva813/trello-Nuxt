@@ -38,6 +38,7 @@ const userSchema = new Schema(
       default: null,
     },
     subscription: {
+      // for subscription
       id: {
         type: String,
         default: null,
@@ -59,7 +60,7 @@ const userSchema = new Schema(
     },
   }
 );
-
+//在儲存前,自動為密码生成 hash
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
 
@@ -68,6 +69,7 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
+// 比較原始密码和 hashed 密码
 userSchema.methods.comparePassword = async function (password: string) {
   return await bcrypt.compare(password, this.password);
 };
