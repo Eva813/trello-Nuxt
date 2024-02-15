@@ -16,18 +16,10 @@ const { formState, isLoading, validationSchema, handleSubmit } = useSignin();
 
     <UForm :state="formState" :schema="validationSchema" @submit="handleSubmit">
       <UFormGroup class="mb-4" name="email" label="Email">
-        <UInput
-          v-model="formState.email"
-          type="email"
-          placeholder="john@email.com"
-        />
+        <UInput v-model="formState.email" type="email" placeholder="john@email.com" />
       </UFormGroup>
       <UFormGroup class="mb-4" name="password" label="Password">
-        <UInput
-          v-model="formState.password"
-          type="password"
-          placeholder="********"
-        />
+        <UInput v-model="formState.password" type="password" placeholder="********" />
       </UFormGroup>
       <UFormGroup>
         <UButton :loading="isLoading" type="submit" color="primary" block>
@@ -38,4 +30,5 @@ const { formState, isLoading, validationSchema, handleSubmit } = useSignin();
   </WrapperAuth>
 </template>
 
-<style></style>
+<style>
+</style>

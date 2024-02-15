@@ -7,7 +7,9 @@ import { List } from "~/server/models/List";
 
 export default defineEventHandler(async (event) => {
   const data = await readBody(event);
+  //使用 Nuxt-Server-Utils 的 Validator 來驗證資料，如果資料不符合 schema，會拋出錯誤
   Validator.validateSchema(SignupSchema, data);
+  // 由 MongoDB 的 User model 建立一個新的 user
   const user = await User.create(data);
 
   // Create a board for the user
