@@ -1,63 +1,11 @@
 # Nuxt Trello SaaS (nrello)
 
+project from :
+[jahid.dev](https://jahid.dev) &nbsp;&middot;&nbsp;
+
 Nuxtrello is a full-stack web application inspired by Trello. This project is built using Nuxt 3, MongoDB, and Tailwind CSS, focusing on creating an efficient, user-friendly task management and organization tool.
 
 ## Topics
-
-### Introduction
-
-- Overview
-- Project Demo
-- Project Data model
-
-### Project Setup
-
-- Installing Nuxt 3
-- Adding Required Dependencies
-- Connecting to MongoDB
-- Creating basic layout
-
-### User Authentication
-
-- Creating User Model
-- Creating User API Routes
-- Creating User Authentication API Routes
-- Creating User Authentication Pages
-
-### Boards Resource
-
-- Creating Board Model
-- Creating Board API Routes
-- Creating Board Pages
-- Creating Image Picker Component
-
-### Lists Resource
-
-- Creating List Model
-- Creating List API Routes
-- Creating List Pages
-- Adding List Editor
-- Adding Drag and Drop Functionality
-
-### Card Resource
-
-- Creating Card Model
-- Creating Card API Routes
-- Creating Card Pages
-- Adding Rich Editor
-- Adding Drag and Drop Functionality
-
-### SaaS Features
-
-- Modify User Model for SaaS
-- Integrate Stripe
-- Create essential SaaS API endpoints
-- Create `useSubscription` composable
-- Design payment modals
-
-### Deployment
-
-- Deploying to Vercel/Netlify/Digital Ocean
 
 <hr>
 
@@ -92,7 +40,7 @@ bcryptjs stripe vuedraggable@next next-auth@4.21.1 @vueup/vue-quill
 
 1. Clone the repository:
    ```
-   git clone https://github.com/jahidanowar/nuxt-trello.git
+   git clone
    ```
 2. Navigate to the project directory:
    ```
@@ -110,16 +58,6 @@ bcryptjs stripe vuedraggable@next next-auth@4.21.1 @vueup/vue-quill
 ## Usage
 
 After starting the development server, the application will be available at `http://localhost:3000`.
-
-## Contributing
-
-Contributions are welcome! Please read our contributing guidelines for details on how to submit pull requests to the project.
-
-## Deployment
-
-Vercel deployment is already covered in the video.
-
-For digital ocean deployment, follow the [Digital Ocean Deployment Guide](https://www.youtube.com/watch?v=hANbHC90xug&ab_channel=JahidAnowar).
 
 ## Contributions & Issues
 
