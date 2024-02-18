@@ -24,7 +24,7 @@ async function getUser(id: string) {
 export default NuxtAuthHandler({
   secret: useRuntimeConfig().auth.secret,
   pages: {
-    //定義不同頁面的URL路徑
+    //定義 signIn 的URL路徑
     signIn: "/auth/signin",
   },
   providers: [

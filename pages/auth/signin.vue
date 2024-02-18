@@ -4,7 +4,7 @@ import { useSignin } from "~/composables/useSignin";
 useHead({
   title: "Signin",
 });
-
+// 表單驗證是來自 useSignin 的 composable
 const { formState, isLoading, validationSchema, handleSubmit } = useSignin();
 </script>
 <template>

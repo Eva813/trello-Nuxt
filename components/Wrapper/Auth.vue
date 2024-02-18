@@ -15,6 +15,7 @@ defineProps({
         <h1 class="text-xl font-bold mb-px">{{ title }}</h1>
         <slot name="header"></slot>
       </div>
+      <!-- The UCard component is a wrapper for the form -->
       <UCard>
         <slot />
       </UCard>
@@ -24,24 +25,6 @@ defineProps({
 </template>
 
 <style>
-/* .right {
-  background: linear-gradient(-45deg, #22c55e, #10b981, #84cc16, #23d5ab);
-  background-size: 400% 400%;
-  animation: gradient 15s ease infinite;
-}
-
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-} */
-
 .right {
   background: linear-gradient(-45deg, #3F64FF, #5269c3, #6f83d4, #5674f0);
   background-size: 300% 300%;

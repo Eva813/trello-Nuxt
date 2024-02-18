@@ -29,6 +29,7 @@ const userSchema = new Schema(
       required: [true, "Email is required"],
       unique: [true, "Email already exists"],
     },
+    // 多加 select: false，會讓 password 不會在每次查詢時都被返回
     password: {
       type: String,
       required: [true, "Password is required"],

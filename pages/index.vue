@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import type { BoardDocument } from "~/server/models/Board";
 
+// middleware: "auth" 會檢查使用者是否登入，如果沒有登入會導向 /auth/signin
+// 可看[…].js 的檔案
 definePageMeta({
   middleware: "auth",
 });
