@@ -21,20 +21,29 @@ async function handleSubmit(
 ) {
   try {
     isLoading.value = true;
+
+    //在 handleSubmit 函式中，我們使用 useFetch 來發送 POST 請求到 /api/auth/signup
     await useFetch("/api/auth/signup", {
       method: "POST",
       body: event.data,
+      timeout: 20000,
     });
     useToast().add({
       title: "Account created",
       description:
         "Your account has been created successfully, Redirecting you to the sign in page",
     });
+
+    // create account successfully, redirect to sign in page
     await useRouter().push({
       name: "auth-signin",
     });
-  } catch (error) {
+  } catch (error: any) {
     console.log(error);
+    useToast().add({
+      title: "Error",
+      description: error.message || "Something went wrong",
+    });
   } finally {
     isLoading.value = false;
   }
@@ -53,25 +62,13 @@ async function handleSubmit(
       </UFormGroup>
 
       <UFormGroup class="mb-4" name="email" label="Email">
-        <UInput
-          v-model="formState.email"
-          type="email"
-          placeholder="john@email.com"
-        />
+        <UInput v-model="formState.email" type="email" placeholder="john@email.com" />
       </UFormGroup>
       <UFormGroup class="mb-4" name="password" label="Password">
-        <UInput
-          v-model="formState.password"
-          type="password"
-          placeholder="********"
-        />
+        <UInput v-model="formState.password" type="password" placeholder="********" />
       </UFormGroup>
       <UFormGroup class="mb-4" name="passwordConfirm" label="Confirm Password">
-        <UInput
-          v-model="formState.passwordConfirm"
-          type="password"
-          placeholder="********"
-        />
+        <UInput v-model="formState.passwordConfirm" type="password" placeholder="********" />
       </UFormGroup>
       <UFormGroup>
         <UButton :loading="isLoading" type="submit" color="primary" block>
@@ -82,4 +79,5 @@ async function handleSubmit(
   </WrapperAuth>
 </template>
 
-<style></style>
+<style>
+</style>
