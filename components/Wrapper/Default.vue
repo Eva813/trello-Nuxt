@@ -37,17 +37,16 @@ async function handleSignout() {
     <header class="p-2 border-b dark:border-gray-700 bg-white dark:bg-gray-800">
       <UContainer>
         <div class="flex justify-between">
-          <NuxtLink to="/"><Icon class="w-8 h-8" /></NuxtLink>
+          <NuxtLink to="/">
+            <Icon class="w-8 h-8" />
+          </NuxtLink>
 
           <div class="inline-flex justify-end gap-4 items-center">
+            <!-- 在不同 page 可以放入不同的 actions -->
             <slot name="actions"></slot>
 
-            <UButton
-              v-if="!(data?.user as UserDocument)?.hasActiveSubscription"
-              variant="outline"
-              color="amber"
-              @click="showSubscriptionModal"
-            >
+            <UButton v-if="!(data?.user as UserDocument)?.hasActiveSubscription" variant="outline" color="amber"
+              @click="showSubscriptionModal">
               <UIcon name="i-heroicons-star" />
             </UButton>
 
@@ -77,4 +76,5 @@ async function handleSignout() {
   </div>
 </template>
 
-<style></style>
+<style>
+</style>

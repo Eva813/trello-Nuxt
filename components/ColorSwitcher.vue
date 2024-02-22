@@ -1,4 +1,6 @@
 <script setup>
+// 此元件是用來切換深色模式和淺色模式的按鈕，主要來自 Nuxt UI 
+// https://ui.nuxt.com/getting-started/theming#dark-mode
 const colorMode = useColorMode();
 
 const isDark = computed({
@@ -13,13 +15,8 @@ const isDark = computed({
 
 <template>
   <ClientOnly>
-    <UButton
-      :icon="isDark ? 'i-heroicons-moon-20-solid' : 'i-heroicons-sun-20-solid'"
-      color="gray"
-      variant="ghost"
-      aria-label="Theme"
-      @click="isDark = !isDark"
-    />
+    <UButton :icon="isDark ? 'i-heroicons-moon-20-solid' : 'i-heroicons-sun-20-solid'" color="gray" variant="ghost"
+      aria-label="Theme" @click="isDark = !isDark" />
 
     <template #fallback>
       <div class="w-8 h-8" />
