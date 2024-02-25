@@ -38,7 +38,7 @@ async function handleSignout() {
       <UContainer>
         <div class="flex justify-between">
           <NuxtLink to="/">
-            <Icon class="w-8 h-8" />
+            <Logo class="w-8 h-8" />
           </NuxtLink>
 
           <div class="inline-flex justify-end gap-4 items-center">
