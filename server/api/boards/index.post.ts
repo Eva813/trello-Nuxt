@@ -14,11 +14,12 @@ export default defineEventHandler(async (event) => {
 
   const boardCount = await Board.countDocuments({ owner: user._id });
 
-  if (boardCount >= 1 && !user.hasActiveSubscription) {
+  // 設定限制，如果用戶沒有訂閱，則只能建立 5 個 board
+  if (boardCount >= 5 && !user.hasActiveSubscription) {
     throw createError({
       statusCode: 403,
       message:
-        "You can't create more than 1 boards in free plan. Please upgrade your plan to create unlimited",
+        "You can't create more than 5 boards in free plan. Please upgrade your plan to create unlimited",
     });
   }
 

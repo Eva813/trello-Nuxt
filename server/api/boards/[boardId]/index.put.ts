@@ -8,10 +8,13 @@ export default defineEventHandler(async (event) => {
 
   const body = await readBody(event);
 
+  // partial 是指 body 可以只包含部分欄位
   Validator.validateSchema(BoardSchema.partial(), body);
 
   const board = await Board.updateOne(
     { _id: boardId, owner: user._id },
+    // $set 是 MongoDB 的 update operator，用來更新指定欄位
+    // 在這裡，我們使用 $set 來更新 board 的欄位
     {
       $set: body,
     }

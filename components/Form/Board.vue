@@ -10,8 +10,8 @@ interface Props {
   onUpdate?: (data?: any) => void;
   onCreate?: (data?: any) => void;
 }
-
-const porps = withDefaults(defineProps<Props>(), {
+//https://blog.csdn.net/lijiahui_/article/details/122725791
+const props = withDefaults(defineProps<Props>(), {
   type: "create",
 });
 
@@ -26,22 +26,23 @@ async function handleSubmit(
 ) {
   try {
     isLoading.value = true;
-    if (porps.type === "update" && porps.initialData?._id) {
+    if (props.type === "update" && props.initialData?._id) {
       const updatedBoard = await useFetch(
-        `/api/boards/${porps.initialData._id}`,
+        `/api/boards/${props.initialData._id}`,
         {
           method: "PUT",
           body: event.data,
           watch: false,
         }
       );
-      porps.onUpdate?.(updatedBoard);
+      props.onUpdate?.(updatedBoard);
       return;
     }
 
     const { data, error } = await useFetch("/api/boards", {
       method: "POST",
       body: event.data,
+      // 這裡的 watch: false 是為了?
       watch: false,
     });
 
@@ -55,7 +56,9 @@ async function handleSubmit(
       }
     }
 
-    porps.onCreate?.(data);
+    // 這裡的 onCreate 是在 pages/index.vue 中的 FormBoard 的 on-create 事件
+    // 這裡的 data 是新增看板後的資料
+    props.onCreate?.(data);
   } catch (e) {
   } finally {
     isLoading.value = false;
@@ -63,24 +66,20 @@ async function handleSubmit(
 }
 
 watchEffect(() => {
-  if (porps.type === "update" && porps.initialData) {
-    formState.name = porps.initialData.name;
-    formState.coverImage = porps.initialData.coverImage;
+  // 判別是更新還是新增
+  if (props.type === "update" && props.initialData) {
+    formState.name = props.initialData.name;
+    formState.coverImage = props.initialData.coverImage;
   }
 
-  if (porps.type === "create") {
+  if (props.type === "create") {
     formState.name = undefined;
     formState.coverImage = undefined;
   }
 });
 </script>
 <template>
-  <UForm
-    :state="formState"
-    :schema="BoardSchema"
-    class="p-4"
-    @submit="handleSubmit"
-  >
+  <UForm :state="formState" :schema="BoardSchema" class="p-4" @submit="handleSubmit">
     <UFormGroup class="mb-4" name="name" label="Board Name">
       <UInput v-model="formState.name" type="text" placeholder="Board name" />
     </UFormGroup>
@@ -95,4 +94,5 @@ watchEffect(() => {
   </UForm>
 </template>
 
-<style></style>
+<style>
+</style>
