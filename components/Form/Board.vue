@@ -26,6 +26,7 @@ async function handleSubmit(
 ) {
   try {
     isLoading.value = true;
+    // 判別是更新還是新增
     if (props.type === "update" && props.initialData?._id) {
       const updatedBoard = await useFetch(
         `/api/boards/${props.initialData._id}`,
@@ -35,7 +36,15 @@ async function handleSubmit(
           watch: false,
         }
       );
+      // 這裡的 onUpdate 是由 外部傳入的 on-update 事件
+      // props.onUpdate?.(updatedBoard)是一個函式呼叫的語法。它使用了可選的鏈結運算子（optional chaining operator）?.，這表示如果props.onUpdate存在且是一個函式，則執行該函式並傳遞updatedBoard作為參數
+
       props.onUpdate?.(updatedBoard);
+
+      useToast().add({
+        title: "Board updated"
+      })
+
       return;
     }
 
@@ -96,3 +105,13 @@ watchEffect(() => {
 
 <style>
 </style>
+
+<!-- 備註 -->
+<!-- updatedBoard 參數會被傳遞給 props.onUpdate 函式。這個函式是由父元件傳遞給 Board 元件的。當 Board 元件的狀態更新時，props.onUpdate 函式會被調用，並且 updatedBoard 會作為參數傳遞給它。
+
+具體來說，updatedBoard 參數的傳遞路徑如下：
+
+Board 元件的某個方法（例如 updateBoard 方法）會產生一個 updatedBoard 物件。
+這個方法會調用 props.onUpdate 函式，並將 updatedBoard 作為參數傳遞給它。
+props.onUpdate 函式是由父元件傳遞給 Board 元件的，所以 updatedBoard 會被傳遞到父元件中的這個函式。
+這種方式允許 Board 元件將其內部狀態的變化通知給父元件，並讓父元件可以對這些變化做出反應。 -->

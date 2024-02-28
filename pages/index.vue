@@ -24,11 +24,13 @@ if (error.value) {
 }
 
 async function handleEdit(board: BoardDocument) {
+  console.log('board', board);
   selectedBoard.value = board;
   showCreateBoard.value = true;
 }
 
 watchEffect(() => {
+  // 當 showCreateBoard false，selectedBoard 會設為 undefined
   if (!showCreateBoard.value) {
     selectedBoard.value = undefined;
   }
@@ -65,6 +67,7 @@ watchEffect(() => {
 
     <!-- List of boards 呈現 boards-->
     <section class="grid grid-cols-2 lg:grid-cols-5 my-4 gap-4">
+      <!-- 在 元件BoardCard 點擊 onEdit 事件 -->
       <BoardCard v-for="board in data" :key="board._id" :board="board" :on-edit="handleEdit"></BoardCard>
     </section>
     <!-- ./ List of boards -->
@@ -73,3 +76,11 @@ watchEffect(() => {
 
 <style>
 </style>
+
+
+<!-- 關於 on-update
+在你提供的程式碼中，on-update 事件處理器並沒有接收任何參數，而是直接關閉 USlideover（設定 showCreateBoard 為 false），清除 selectedBoard（設定為 undefined），並重新整理資料（調用 refresh 方法）。這表示當 FormBoard 元件觸發 update 事件時，你並不需要處理任何更新的資料，而只需要進行這些操作。
+
+這種設計的原因可能是 FormBoard 元件已經在內部處理了資料的更新，並且當更新完成後，你只需要關閉 USlideover，清除 selectedBoard，並重新整理資料即可。這種設計可以讓 FormBoard 元件更獨立，並減少父元件需要處理的邏輯。
+
+然而，這種設計也有一些限制。例如，如果你需要在更新資料後進行一些額外的操作（例如顯示一個通知或更新其他元件的狀態），你可能需要修改 FormBoard 元件，讓它能夠將更新的資料傳遞給 on-update 事件處理器。 -->

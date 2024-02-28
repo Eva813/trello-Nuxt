@@ -30,26 +30,17 @@ const actions = ref([
 ]);
 </script>
 <template>
-  <div class="shadow dark:bg-gray-800 rounded-lg overflow-hidden relative">
+  <div class="shadow dark:bg-gray-700 rounded-lg overflow-hidden relative">
     <div v-if="board.coverImage" class="h-36 w-full relative z-[1]">
-      <NuxtImg
-        :src="board.coverImage"
-        :alt="board.name"
-        class="h-full w-full absolute object-cover z-[1]"
-      />
-      <div
-        class="absolute w-full h-full z-[2] bg-gradient-to-b from-black/90 to-transparent"
-      ></div>
+      <NuxtImg :src="board.coverImage" :alt="board.name" class="h-full w-full absolute object-cover z-[1]" />
+      <div class="absolute w-full h-full z-[2] bg-gradient-to-b from-black/90 to-transparent"></div>
     </div>
 
     <div class="flex items-center gap-2 absolute left-0 z-10 top-0 py-2 px-4">
-      <NuxtLink
-        :to="{
-          name: 'boardId',
-          params: { boardId: board._id },
-        }"
-        class="block font-semibold text-white"
-        >{{ board.name }}
+      <NuxtLink :to="{
+        name: 'boardId',
+        params: { boardId: board._id },
+      }" class="block font-semibold text-white">{{ board.name }}
       </NuxtLink>
       <UDropdown :items="actions">
         <UIcon name="i-heroicons-cog-6-tooth" class="text-white"></UIcon>
@@ -58,4 +49,5 @@ const actions = ref([
   </div>
 </template>
 
-<style></style>
+<style>
+</style>
