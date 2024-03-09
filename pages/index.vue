@@ -25,6 +25,7 @@ if (error.value) {
 
 async function handleEdit(board: BoardDocument) {
   console.log('board', board);
+  // 點擊編輯按鈕時，會將 selectedBoard 設為點擊的看板
   selectedBoard.value = board;
   showCreateBoard.value = true;
 }

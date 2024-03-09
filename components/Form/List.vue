@@ -4,6 +4,7 @@ import type { ListDocument } from "~/server/models/List";
 import { z } from "zod";
 import ListSchema from "~/schemas/List.schema";
 
+// 這個 component 會用來新增或更新 list
 interface Props {
   type: "create" | "update";
   boardId: string;

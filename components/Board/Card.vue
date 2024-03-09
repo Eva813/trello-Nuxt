@@ -9,7 +9,7 @@ const props = defineProps<Props>();
 
 const { destroy } = useBoard();
 const refreshBoards = inject("refresh-boards") as () => void;
-
+// nuxtUI dropdown
 const actions = ref([
   [
     {
@@ -33,6 +33,7 @@ const actions = ref([
   <div class="shadow dark:bg-gray-700 rounded-lg overflow-hidden relative">
     <div v-if="board.coverImage" class="h-36 w-full relative z-[1]">
       <NuxtImg :src="board.coverImage" :alt="board.name" class="h-full w-full absolute object-cover z-[1]" />
+      <!-- 自製一個遮罩  -->
       <div class="absolute w-full h-full z-[2] bg-gradient-to-b from-black/90 to-transparent"></div>
     </div>
 

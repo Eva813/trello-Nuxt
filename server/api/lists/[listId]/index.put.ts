@@ -2,7 +2,9 @@ import { Validator } from "#nuxt-server-utils";
 import ListSchema from "~/schemas/List.schema";
 import { List } from "~/server/models/List";
 
+// inside the handler, the first thing we would do is access listId from the event object
 export default defineEventHandler(async (event) => {
+  // getRouterParam is utility function from h3
   const listId = getRouterParam(event, "listId");
   const user = event.context.user;
 
