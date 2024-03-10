@@ -20,18 +20,16 @@ async function handleSort(e: any) {
 </script>
 <template>
   <div>
-    <draggable
-      :list="lists"
-      handle=".list-header"
-      ghost-class="ghost-board"
-      drag-class="dragging-board"
-      item-key="_id"
-      :scroll-sensitivity="500"
-      :force-fallback="true"
-      @sort="handleSort"
-      class="flex h-[80vh] overflow-x-auto gap-4 pb-2 list"
-    >
+    <!-- handle .list-header 是用來拖曳整個 list 的 header -->
+    <!-- scroll-sensitivity 是用來設定拖曳時的滾動速度 -->
+    <!-- force-fallback 是用來設定當拖曳時，是否使用原生的拖曳效果 -->
+    <!-- 須設置 item-key -->
+    <!-- ghost-class 目标位置占位符的样式及需要停靠位置的样式 -->
+    <draggable :list="lists" handle=".list-header" ghost-class="ghost-board" drag-class="dragging-board" item-key="_id"
+      :scroll-sensitivity="500" :force-fallback="true" @sort="handleSort"
+      class="flex h-[80vh] overflow-x-auto gap-4 pb-2 list">
       <template #item="{ element }">
+
         <div class="flex">
           <ListItem :list="element" :board-id="boardId" />
         </div>
@@ -41,13 +39,15 @@ async function handleSort(e: any) {
 </template>
 
 <style>
-.ghost-board > div {
+.ghost-board>div {
   @apply opacity-50;
 }
-.ghost-board > div > div {
+
+.ghost-board>div>div {
   @apply invisible;
 }
 
+/* 在 dragging 時，設置的效果 */
 .dragging-board {
   @apply shadow-2xl transform rotate-2 cursor-grabbing;
 }

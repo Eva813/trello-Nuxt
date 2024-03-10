@@ -46,6 +46,7 @@ const lists = computed(() => data.value?.lists as ListDocument[]);
       {{ data!.name }}
     </h1>
 
+    <!-- 呈現此 board 的所有 list -->
     <ListContainer :lists="lists" :board-id="(boardId as string)" />
 
     <!-- 當 showCreateList 為 true 時，顯示 Slideover -->
