@@ -60,7 +60,7 @@ async function handleSubmit(
         useSubscription().showSubscriptionModal({
           title: "Multiple boards is a Premium Feature",
           description:
-            "You can create only one board in free plan. Please upgrade to premium to create more boards.",
+            "You can create only five board in free plan. Please upgrade to premium to create more boards.",
         });
       }
     }
@@ -103,8 +103,7 @@ watchEffect(() => {
   </UForm>
 </template>
 
-<style>
-</style>
+<style></style>
 
 <!-- 備註 -->
 <!-- updatedBoard 參數會被傳遞給 props.onUpdate 函式。這個函式是由父元件傳遞給 Board 元件的。當 Board 元件的狀態更新時，props.onUpdate 函式會被調用，並且 updatedBoard 會作為參數傳遞給它。

@@ -9,6 +9,7 @@ interface Props {
 
 const props = defineProps<Props>();
 
+// 使用 draggable 來實現拖曳效果，並且設置 handleSort 來處理拖曳後的排序
 async function handleSort(e: any) {
   await useFetch(`/api/boards/${props.boardId}`, {
     method: "PUT",

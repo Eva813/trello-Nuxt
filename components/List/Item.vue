@@ -41,6 +41,7 @@ const { update: updateCard } = useCard();
 
 async function handleCardChange(e: any) {
   try {
+    // 取到拖曳後的 card，並拿到 event
     if (e.added) {
       const { element: card } = e.added;
       await updateCard(props.list._id, card._id, {
@@ -48,6 +49,7 @@ async function handleCardChange(e: any) {
       });
     }
 
+    // store the correct order of the cards
     await update(props.list._id, {
       cards: data.value?.flatMap((item) => item._id),
     });
@@ -86,7 +88,7 @@ watch(showCreateCard, (value) => {
     <!-- ./ List Header  -->
 
     <!-- List Body  -->
-
+    <!-- 設定 group="list" 來讓拖曳時，能拖曳到同一個 group 中(可以橫向拉到另一個 board) -->
     <draggable v-if="data" :list="data" item-key="_id" group="list" :scroll-sensitivity="500" :force-fallback="true"
       ghost-class="ghost-card" drag-class="dragging-card" class="list-body p-2 space-y-2 flex-1 overflow-y-auto"
       @change="handleCardChange">
@@ -105,6 +107,7 @@ watch(showCreateCard, (value) => {
     </div>
     <!-- ./ List Footer  -->
 
+    <!-- 彈跳視窗 -->
     <Teleport to="body">
       <UModal v-model="showCreateCard">
         <SlideoverHeader :title="selectedCard ? 'Update card' : 'Create a card'"

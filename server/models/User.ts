@@ -85,6 +85,8 @@ userSchema.methods.updateSubscription = async function (
   await this.save();
 };
 
+// create a virtual property , when we query a user we will get it as a normal property in a object
+// mongoose virtual are document properties that you can get and set but that do not get persisted to MongoDB
 userSchema.virtual("hasActiveSubscription").get(function (this: UserDocument) {
   const allowedStatuses = ["active", "trialing"];
 

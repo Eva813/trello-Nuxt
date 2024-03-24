@@ -20,6 +20,7 @@ export default defineEventHandler(async (event) => {
   }
 
   // Remove the card from the list
+  //$pull 被用於從 List 集合中的 cards 陣列中移除指定的 card._id。這樣可以確保在刪除卡片後，相應的卡片也會從列表中移除。
   await List.findByIdAndUpdate(listId, {
     $pull: { cards: card._id },
   });

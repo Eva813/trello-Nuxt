@@ -2,6 +2,7 @@ import { User, UserDocument } from "~/server/models/User";
 import stripe from "~/utils/stripe";
 
 export default defineEventHandler(async (event) => {
+  // give the access to the runtime configuration
   const config = useRuntimeConfig();
   const user = await User.findById(event.context.user._id);
 
@@ -13,6 +14,7 @@ export default defineEventHandler(async (event) => {
   }
 
   if (!user.stripeCustomerId) {
+    // 使用建立的 util stripe 函數
     const customer = await stripe().customers.create({
       email: user.email,
       name: user.name,

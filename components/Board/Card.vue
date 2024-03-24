@@ -7,6 +7,7 @@ interface Props {
 }
 const props = defineProps<Props>();
 
+// 包含刪除 board 的功能
 const { destroy } = useBoard();
 const refreshBoards = inject("refresh-boards") as () => void;
 // nuxtUI dropdown
@@ -39,9 +40,9 @@ const actions = ref([
 
     <div class="flex items-center gap-2 absolute left-0 z-10 top-0 py-2 px-4">
       <NuxtLink :to="{
-        name: 'boardId',
-        params: { boardId: board._id },
-      }" class="block font-semibold text-white">{{ board.name }}
+      name: 'boardId',
+      params: { boardId: board._id },
+    }" class="block font-semibold text-white">{{ board.name }}
       </NuxtLink>
       <UDropdown :items="actions">
         <UIcon name="i-heroicons-cog-6-tooth" class="text-white"></UIcon>
@@ -50,5 +51,4 @@ const actions = ref([
   </div>
 </template>
 
-<style>
-</style>
+<style></style>

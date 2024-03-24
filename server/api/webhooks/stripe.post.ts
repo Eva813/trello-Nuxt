@@ -2,6 +2,8 @@ import Stripe from "stripe";
 import { User } from "~/server/models/User";
 import stripe from "~/utils/stripe";
 
+// 放在 webhooks 資料夾下的檔案，是用來處理？
+
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
   const body = await readRawBody(event);
@@ -20,7 +22,7 @@ export default defineEventHandler(async (event) => {
       stripeSignature,
       config.stripeWebhookSecret
     );
-
+      // 當使用者的訂閱被建立、更新、刪除或恢復時，我們會收到 Stripe 的事件。
     switch (stripeEvent.type) {
       case "customer.subscription.created":
       case "customer.subscription.updated":
